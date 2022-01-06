@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Employee } from '../model/employee';
 import { EmpFilter, filterOption } from '../model/empfilter';
 import { MatSelectChange } from '@angular/material/select';
+import {MatSort,Sort} from '@angular/material/sort';
+
 
 @Component({
   selector: 'app-mat-table-filter',
@@ -38,9 +40,17 @@ export class MatTableFilterComponent implements OnInit {
   dataSource = new MatTableDataSource(this.EmpData);
   dataSourceFilters = new MatTableDataSource(this.EmpData);
 
+  @ViewChild('empTbSort') empTbSort = new MatSort();
+
+
   constructor() { 
   }
 
+  ngAfterViewInit() {
+    //this.sort.disableClear = true;
+    debugger;
+    this.dataSource.sort = this.empTbSort;
+  }
 
   ngOnInit(): void {
 
@@ -49,7 +59,6 @@ export class MatTableFilterComponent implements OnInit {
     this.empFilters.push({name:'department',options:this.departments,defaultValue:this.defaultValue});
 
     this.dataSourceFilters.filterPredicate = function (record,filter) {
-      debugger;
       var map = new Map(JSON.parse(filter));
       let isMatch = false;
       for(let [key,value] of map){
@@ -58,8 +67,6 @@ export class MatTableFilterComponent implements OnInit {
       }
       return isMatch;
     }
-    
-
     
   }
 
