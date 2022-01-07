@@ -41,9 +41,11 @@ export class MatTableFilterComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    //this.sort.disableClear = true;
-    debugger;
+    
+    this.empTbSort.disableClear = true;
     this.dataSource.sort = this.empTbSort;
+
+    this.empTbSortWithObject.disableClear = true;
     this.dataSourceWithObjectColumn.sort = this.empTbSortWithObject;
     this.dataSourceWithObjectColumn.sortingDataAccessor = (row:Employee,columnName:string) : string => {
       console.log(row,columnName);
