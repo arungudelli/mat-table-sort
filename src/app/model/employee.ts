@@ -5,5 +5,11 @@ export interface Employee {
   email:string,
   gender:string,	
   jobtitle:string,
-  department:string
+  department:string,
+  project?: Project
+}
+
+export interface Project{
+  name:string,
+  id:number
 }

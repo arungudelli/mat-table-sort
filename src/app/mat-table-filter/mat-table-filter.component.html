@@ -3,14 +3,17 @@
 For the complete tutorial please go through <a href="https://www.angularjswiki.com/material/mat-table-sort/">https://www.angularjswiki.com/material/mat-table-sort/</a>
 </mat-card>
 <h2>mat-table sort</h2>
-<!-- <mat-form-field appearance="standard" class="full-width">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Search Columns" #input>
-</mat-form-field> -->
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort #empTbSort="matSort">
     <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
         <th mat-header-cell *matHeaderCellDef mat-sort-header=false> {{column}} </th>
-        <td mat-cell *matCellDef="let emp"> {{emp[column]}} </td>
+        <ng-container *ngIf="column=='project.name'">
+          <td mat-cell *matCellDef="let emp"> {{emp.project.name}} </td>
+        </ng-container>
+        <ng-container *ngIf="column!='project.name'">
+          <td mat-cell *matCellDef="let emp"> {{emp[column]}} </td>
+        </ng-container>
+        
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
