@@ -13,9 +13,10 @@ import {MatSort,Sort} from '@angular/material/sort';
 })
 export class MatTableFilterComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email','gender','jobtitle','department','project.name'];
+  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email','gender','jobtitle','department'];
 
- 
+  displayedColumnsWithObject: string[] = ['id', 'firstname', 'lastname', 'email','gender','jobtitle','department','project.name'];
+
   EmpData : Employee[] =[{"id":1,"firstname":"Mellie","lastname":"Gabbott","email":"mgabbott0@indiatimes.com","gender":"Female","department":"Support","jobtitle":"Support Analyst","project":{name:"project1",id:1}},
   {"id":2,"firstname":"Yehudi","lastname":"Ainsby","email":"yainsby1@w3.org","gender":"Female","department":"Support","jobtitle":"Support Analyst","project":{name:"project2",id:2}},
   {"id":3,"firstname":"Noellyn","lastname":"Primett","email":"nprimett2@ning.com","gender":"Female","department":"Human Resources","jobtitle":"Project Manager","project":{name:"project3",id:3}},
@@ -28,8 +29,12 @@ export class MatTableFilterComponent implements OnInit {
   {"id":10,"firstname":"Claybourne","lastname":"Shellard","email":"cshellard9@rediff.com","gender":"Male","department":"Engineering","jobtitle":"Software Engineer","project":{name:"project10",id:10}}];
   
   dataSource = new MatTableDataSource(this.EmpData);
+  dataSourceWithObjectColumn = new MatTableDataSource(this.EmpData);
+
   
   @ViewChild('empTbSort') empTbSort = new MatSort();
+  @ViewChild('empTbSortWithObject') empTbSortWithObject = new MatSort();
+
 
 
   constructor() { 
@@ -39,6 +44,13 @@ export class MatTableFilterComponent implements OnInit {
     //this.sort.disableClear = true;
     debugger;
     this.dataSource.sort = this.empTbSort;
+    this.dataSourceWithObjectColumn.sort = this.empTbSortWithObject;
+    this.dataSourceWithObjectColumn.sortingDataAccessor = (row:Employee,columnName:string) : string => {
+      console.log(row,columnName);
+      if(columnName=="project.name") return row.project.name;
+      var columnValue = row[columnName as keyof Employee] as string;
+      return columnValue;
+    }
   }
 
   ngOnInit(): void {

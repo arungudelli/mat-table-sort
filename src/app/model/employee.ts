@@ -6,7 +6,7 @@ export interface Employee {
   gender:string,	
   jobtitle:string,
   department:string,
-  project?: Project
+  project: Project
 }
 
 export interface Project{
