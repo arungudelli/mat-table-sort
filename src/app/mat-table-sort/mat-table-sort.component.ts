@@ -7,11 +7,11 @@ import {MatSort,Sort} from '@angular/material/sort';
 
 
 @Component({
-  selector: 'app-mat-table-filter',
-  templateUrl: './mat-table-filter.component.html',
-  styleUrls: ['./mat-table-filter.component.scss']
+  selector: 'app-mat-table-sort',
+  templateUrl: './mat-table-sort.component.html',
+  styleUrls: ['./mat-table-sort.component.scss']
 })
-export class MatTableFilterComponent implements OnInit {
+export class MatTableSortComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email','gender','jobtitle','department'];
 
