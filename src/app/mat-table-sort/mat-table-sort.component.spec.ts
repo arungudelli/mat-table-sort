@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatTableFilterComponent } from './mat-table-sort.component';
+import { MatTableSortComponent } from './mat-table-sort.component';
 
-describe('MatTableFilterComponent', () => {
-  let component: MatTableFilterComponent;
-  let fixture: ComponentFixture<MatTableFilterComponent>;
+describe('MatTableSortComponent', () => {
+  let component: MatTableSortComponent;
+  let fixture: ComponentFixture<MatTableSortComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MatTableFilterComponent ]
+      declarations: [ MatTableSortComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MatTableFilterComponent);
+    fixture = TestBed.createComponent(MatTableSortComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
